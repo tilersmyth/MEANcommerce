@@ -1,0 +1,53 @@
+<ng-form name="general">
+    <div class="form-group" ng-class="{ 'has-error' : submitted && productForm.title.$invalid }">
+      <div class="col-md-12">
+        <input name="title" type="text" class="form-control input-lg" data-ng-model="products.product_title" id="title" placeholder="Product Title" required>
+        <div ng-show="submitted && productForm.title.$invalid" class="help-block">
+          <p ng-show="productForm.title.$error.required">Title is required</p>
+        </div>
+       </div> 
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && productForm.content.$invalid }">
+      <div class="col-md-12">
+        <textarea name="content" data-ng-model="products.product_content" id="content" rows="5" placeholder="Content" class="form-control input-lg" required></textarea>
+        <div ng-show="submitted && productForm.content.$invalid" class="help-block">
+          <p ng-show="productForm.content.$error.required">Content is required</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div ng-class="{ 'col-md-7' : file}">
+        <div ng-class="{ 'has-error' : submitted && productForm.price.$invalid, 'price-input' : file, 'col-md-4' : !file }">
+            <div class="input-group">
+              <div class="input-group-addon">$</div>
+              <input name="price" type="text" class="form-control input-lg" data-ng-model="products.product_price" id="price" placeholder="Regular Price" required>
+            </div>  
+            <div ng-show="submitted && productForm.price.$invalid" class="help-block">
+              <p ng-show="productForm.price.$error.required">Price is required</p>
+            </div>
+        </div>
+         <div ng-class="{ 'has-error' : submitted && productForm.sku.$invalid, '' : file, 'col-md-4' : !file }">
+              <input name="sku" type="text" class="form-control input-lg" data-ng-model="products.product_sku" id="sku" placeholder="SKU"> 
+            <div ng-show="submitted && productForm.sku.$invalid" class="help-block">
+              <p ng-show="productForm.sku.$error.required">sku is required</p>
+            </div>
+        </div>
+      </div>
+      <div ng-class="{ 'has-error' : submitted && productForm.sku.$invalid, 'col-md-5 prod_image_container' : file, 'col-md-4' : !file }">
+          <button class="btn btn-default btn-lg" ng-hide="file" style="width:100%" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+    accept="image/*" ngf-max-size="20MB" ngf-min-height="100" 
+    ngf-resize="{width: 200, height: 200}">Select Image</button>
+    <img ngf-thumbnail="file">
+    <a href="#" class="product_image_remove" ng-click="file = null" ng-show="file"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+    </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : submitted && productForm.tags.$invalid }">
+      <div class="col-md-12">
+        <input name="tags" type="text" class="form-control input-lg" data-ng-model="products.product_tags" id="tags" placeholder="Product Tags">
+        <div ng-show="submitted && productForm.tags.$invalid" class="help-block">
+          <p ng-show="productForm.tags.$error.required">Tags is required</p>
+        </div>
+       </div> 
+    </div>
+</ng-form>

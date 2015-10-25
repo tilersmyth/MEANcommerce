@@ -1,0 +1,18 @@
+<div class="" data-ng-controller="ProductNewController">
+  <h2>Add New Product</h2>
+<form name="productForm" class="form-horizontal" role="form" data-ng-submit="create(productForm.$valid)" novalidate>
+  <div class="row">
+      <div class="col-md-8">
+        <uib-tabset>
+            <uib-tab data-ng-repeat="tab in tabs" select="go(tab.route)" heading="{{tab.title}}">
+              <ui-view></ui-view>
+            </uib-tab>
+        </uib-tabset>
+      </div>
+      <div class="col-md-3 col-md-offset-1 well well-sm">
+        <button mean-token="'create-submit'" type="submit" class="btn btn-primary">Save Product</button>
+      </div>
+  </div> <!-- .row -->
+</form>
+</div>
+

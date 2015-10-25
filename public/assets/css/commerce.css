@@ -1,0 +1,20 @@
+ul.nav-tabs{
+	margin: 0 -15px 20px -15px;
+}
+
+.prod_image_container{
+	text-align: center;
+	position: relative;
+}
+
+.product_image_remove{
+	position: absolute;
+	top: 0;
+	right: 15px;
+	font-size: 20px;
+	color: #999999;
+}
+
+.price-input{
+	margin-bottom: 15px;
+}

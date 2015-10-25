@@ -1,0 +1,11 @@
+#-------------
+# Lib Files
+# --------------------
+public/assets/lib/
+
+#-------------
+# Bower Files
+# -------------------
+.bower-cache/
+.bower-registry/
+.bower-tmp/
