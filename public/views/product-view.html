@@ -1,6 +1,12 @@
-<div class="" data-ng-controller="ProductListController">
+<div class="" data-ng-controller="ProductListController" data-ng-init="find()">
   <h2>Products <a class="btn btn-default btn-sm" href="/auth/products/new">Add Product</a></h2>
 
+  <div ng-repeat="product in products">
+
+  		<a data-ng-href="/auth/products/{{product._id}}">{{product.product_title}}</a>
+
+  </div>
+  
 
 </div>
 

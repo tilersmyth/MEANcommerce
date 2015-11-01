@@ -30,9 +30,8 @@ var ProductSchema = new Schema({
     required: true,
     trim: true
   },
-  product_image: {
+  picFile: {
     type: String,
-    required: true,
     trim: true
   },
   user: {

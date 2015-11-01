@@ -25,8 +25,16 @@ module.exports = function(Products, app, auth) {
   
   var products = require('../controllers/commerce')(Products);
 
+  app.route('/auth/products')
+  .get(products.all);
+
+
   app.route('/api/product')
+    .get(products.all)
     .post(auth.requiresLogin, hasPermissions, products.create);
 
+  app.route('/api/product/:productId')
+    .get(auth.isMongoId, products.show);
 
+  app.param('productId', products.single);
 };

@@ -17,8 +17,7 @@
     </div>
 
     <div class="form-group">
-      <div ng-class="{ 'col-md-7' : file}">
-        <div ng-class="{ 'has-error' : submitted && productForm.price.$invalid, 'price-input' : file, 'col-md-4' : !file }">
+        <div class="col-md-4" ng-class="{ 'has-error' : submitted && productForm.price.$invalid }">
             <div class="input-group">
               <div class="input-group-addon">$</div>
               <input name="price" type="text" class="form-control input-lg" data-ng-model="products.product_price" id="price" placeholder="Regular Price" required>
@@ -27,20 +26,19 @@
               <p ng-show="productForm.price.$error.required">Price is required</p>
             </div>
         </div>
-         <div ng-class="{ 'has-error' : submitted && productForm.sku.$invalid, '' : file, 'col-md-4' : !file }">
+         <div class="col-md-4" ng-class="{ 'has-error' : submitted && productForm.sku.$invalid }">
               <input name="sku" type="text" class="form-control input-lg" data-ng-model="products.product_sku" id="sku" placeholder="SKU"> 
             <div ng-show="submitted && productForm.sku.$invalid" class="help-block">
               <p ng-show="productForm.sku.$error.required">sku is required</p>
             </div>
-        </div>
       </div>
-      <div ng-class="{ 'has-error' : submitted && productForm.sku.$invalid, 'col-md-5 prod_image_container' : file, 'col-md-4' : !file }">
-          <button class="btn btn-default btn-lg" ng-hide="file" style="width:100%" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
-    accept="image/*" ngf-max-size="20MB" ngf-min-height="100" 
-    ngf-resize="{width: 200, height: 200}">Select Image</button>
-    <img ngf-thumbnail="file">
-    <a href="#" class="product_image_remove" ng-click="file = null" ng-show="file"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-    </div>
+      <div class="col-md-4" ng-class="{ 'has-error' : submitted && productForm.sku.$invalid }">
+        <button class="btn btn-default btn-lg" ng-hide="products.picFile" style="width:100%" ngf-select ng-model="products.picFile" name="file" 
+  accept="image/*" ngf-max-size="20MB" ngf-min-height="100" 
+  ngf-resize="{width: 200, height: 200}">Select Image</button>
+        <img ng-show="products.picFile" ngf-thumbnail="products.picFile" class="thumb"> 
+        <a href="#" class="product_image_remove" ng-click="products.picFile = null" ng-show="products.picFile"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+      </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : submitted && productForm.tags.$invalid }">
       <div class="col-md-12">

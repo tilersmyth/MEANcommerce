@@ -14,10 +14,10 @@ module.exports = function(Products) {
         /**
          * Find product by id
          */
-        article: function(req, res, next, id) {
+        single: function(req, res, next, id) {
             Product.load(id, function(err, products) {
                 if (err) return next(err);
-                if (!article) return next(new Error('Failed to load article ' + id));
+                if (!products) return next(new Error('Failed to load product ' + id));
                 req.products = products;
                 next();
             });
@@ -36,6 +36,8 @@ module.exports = function(Products) {
                     });
                 }
 
+                
+
                 Products.events.publish({
                     action: 'created',
                     user: {
@@ -47,6 +49,29 @@ module.exports = function(Products) {
 
                 res.json(products);
             });
+        },
+        /**
+         * Show a Product
+         */
+        show: function(req, res) {
+
+            res.json(req.products);
+        },
+         /**
+         * List of Products
+         */
+        all: function(req, res) {
+
+           Product.find().sort('-created').populate('user', 'name username').exec(function(err, products) {
+                if (err) {
+                    res.render('error', {
+                        status: 500
+                    });
+                } else {
+                    res.jsonp(products);
+                }
+            });
+
         }
     };
 }

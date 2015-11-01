@@ -24,6 +24,14 @@ angular.module('mean.commerce').config(['$stateProvider',
     .state("newProduct.data", { url: "/", templateUrl: "commerce/views/product-tabs/data.html" })
     .state("newProduct.image", { url: "/", templateUrl: "commerce/views/product-tabs/image.html" })
     .state("newProduct.discount", { url: "/", templateUrl: "commerce/views/product-tabs/discount.html" })
-    ;
+    .state('product by id', {
+        url: '/auth/products/:productId',
+        templateUrl: 'commerce/views/product-single.html',
+        resolve: {
+          loggedin: function(MeanUser) {
+            return MeanUser.checkLoggedin();
+          }
+        }
+      });
   }
 ]);

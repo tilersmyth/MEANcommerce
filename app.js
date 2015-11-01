@@ -18,10 +18,17 @@ Commerce.register(function(app, auth, database) {
 
   //We are adding a link to the main menu for all authenticated users
   Commerce.menus.add({
-    title: 'MEANcommerce',
+    title: 'Products',
     link: 'MEANcommerce list',
     roles: ['authenticated'],
-    menu: 'main'
+    menu: 'main'  
+  });
+
+  Commerce.menus.add({
+    title: 'Add New',
+    link: 'newProduct',
+    roles: ['authenticated'],
+    menu: 'main'  
   });
   
   Commerce.aggregateAsset('css', 'commerce.css');
