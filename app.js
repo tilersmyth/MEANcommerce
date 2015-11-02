@@ -36,8 +36,10 @@ Commerce.register(function(app, auth, database) {
   Commerce.aggregateAsset('js', '../lib/ng-file-upload/ng-file-upload-shim.min.js');
   Commerce.aggregateAsset('js', '../lib/ng-file-upload/ng-file-upload-all.min.js');
 
+  Commerce.aggregateAsset('js', '../lib/moment/moment.js');
+  Commerce.aggregateAsset('js', '../lib/angular-moment/angular-moment.js');
 
-  Commerce.angularDependencies(['ngFileUpload']);
+  Commerce.angularDependencies(['ngFileUpload', 'angularMoment']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

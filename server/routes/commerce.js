@@ -34,7 +34,8 @@ module.exports = function(Products, app, auth) {
     .post(auth.requiresLogin, hasPermissions, products.create);
 
   app.route('/api/product/:productId')
-    .get(auth.isMongoId, products.show);
+    .get(auth.isMongoId, products.show)
+    .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, products.destroy);
 
   app.param('productId', products.single);
 };

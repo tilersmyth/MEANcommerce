@@ -51,6 +51,30 @@ module.exports = function(Products) {
             });
         },
         /**
+         * Delete a Product
+         */
+        destroy: function(req, res) {
+            var product = req.products;
+
+            product.remove(function(err) {
+                if (err) {
+                    return res.status(500).json({
+                        error: 'Cannot delete the product'
+                    });
+                }
+
+                Products.events.publish({
+                    action: 'deleted',
+                    user: {
+                        name: req.user.name
+                    },
+                    name: product.title
+                });
+
+                res.json(product);
+            });
+        },
+        /**
          * Show a Product
          */
         show: function(req, res) {

@@ -1,20 +1,41 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('mean.commerce').controller('ProductListController', ['$scope', 'Global', 'Product', 
-  function($scope, Global, Product) {
+angular.module('mean.commerce')
+.controller('ProductListController', ['$scope', 'Global', 'Product', '$location',
+  function($scope, Global, Product, $location) {
     $scope.global = Global;
     $scope.package = {
       name: 'commerce'
     };
 
-    
     $scope.find = function() {
       Product.query(function(products) {
-        $scope.products = products;
-          
+        $scope.products = products; 
       });
     };
+
+    $scope.getProduct = function() {
+        $location.path('/auth/products/'+this.product._id);
+    };
+
+    $scope.remove = function(product, $event) {
+        $event.stopPropagation();
+
+        if (product) {
+        product.$remove(function(response) {
+            for (var i in $scope.products) {
+              if ($scope.products[i] === product) {
+                $scope.products.splice(i, 1);
+              }
+            }
+          });
+        } else {
+          $scope.product.$remove(function(response) {
+        });
+        }
+    };
+
   }
 ])
 .controller('ProductNewController', ['$scope', 'Global', 'Product','$state', 'Upload',

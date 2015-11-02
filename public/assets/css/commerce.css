@@ -18,3 +18,25 @@ ul.nav-tabs{
 .price-input{
 	margin-bottom: 15px;
 }
+
+.product_row{
+	cursor: pointer;
+}
+
+.product_row:hover{
+	background-color: #d9edf7 !important;
+}
+
+.quick_edit_controls_wrapper{
+	position: relative;
+}
+
+.quick_edit_controls{
+	display: none;
+	position: absolute;
+	right: 10px;
+}
+
+.product_row:hover .quick_edit_controls{
+	display: block;
+}

@@ -2,6 +2,7 @@
   "name": "commerce",
   "version": "0.0.1",
   "dependencies": {
-  	"ng-file-upload": "latest"
+  	"ng-file-upload": "latest",
+  	"angular-moment": "latest"
   }
 }
