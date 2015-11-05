@@ -30,9 +30,17 @@ var ProductSchema = new Schema({
     required: true,
     trim: true
   },
-  picFile: {
+  product_sku: {
     type: String,
     trim: true
+  },
+  stock: {
+    type: String,
+    trim: true
+  },  
+  picFile: {
+    type: String
+    //array
   },
   user: {
     type: Schema.ObjectId,

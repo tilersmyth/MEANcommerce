@@ -25,7 +25,7 @@ module.exports = function(Products) {
         /**
          * Create Product
          */
-        create: function(req, res) {
+        create: function(req, res) { 
             var products = new Product(req.body);
             products.user = req.user;
             
@@ -37,7 +37,6 @@ module.exports = function(Products) {
                 }
 
                 
-
                 Products.events.publish({
                     action: 'created',
                     user: {

@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
   	"ng-file-upload": "latest",
-  	"angular-moment": "latest"
+  	"angular-moment": "latest",
+  	"checklist-model": "latest"
   }
 }

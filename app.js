@@ -36,10 +36,12 @@ Commerce.register(function(app, auth, database) {
   Commerce.aggregateAsset('js', '../lib/ng-file-upload/ng-file-upload-shim.min.js');
   Commerce.aggregateAsset('js', '../lib/ng-file-upload/ng-file-upload-all.min.js');
 
-  Commerce.aggregateAsset('js', '../lib/moment/moment.js');
-  Commerce.aggregateAsset('js', '../lib/angular-moment/angular-moment.js');
+  Commerce.aggregateAsset('js', '../lib/moment/moment.js', {weight: 1});
+  Commerce.aggregateAsset('js', '../lib/angular-moment/angular-moment.js', {weight: 2});
 
-  Commerce.angularDependencies(['ngFileUpload', 'angularMoment']);
+  Commerce.aggregateAsset('js', '../lib/checklist-model/checklist-model.js');
+
+  Commerce.angularDependencies(['ngFileUpload', 'angularMoment', 'checklist-model']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

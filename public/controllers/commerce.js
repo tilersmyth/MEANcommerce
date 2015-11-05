@@ -36,6 +36,17 @@ angular.module('mean.commerce')
         }
     };
 
+    $scope.checkAll = function() {
+      if($scope.master)
+        $scope.select.products = $scope.products.map(function(item) { return item._id; });
+      else
+        $scope.select.products = [];
+    };
+
+    $scope.select = {
+      products: []
+    };
+
   }
 ])
 .controller('ProductNewController', ['$scope', 'Global', 'Product','$state', 'Upload',
@@ -55,19 +66,13 @@ angular.module('mean.commerce')
         $state.go('newProduct.'+route);
     };
  
-
     $scope.create = function(isValid) {
       if (isValid) {  
 
-        // if ($scope.products.picFile)
-        // $scope.upload($scope.products.picFile);
-
-        var products = new Product($scope.products);
+        var products = new Product($scope.products); 
 
         products.$save(function(response) {
           
-        
-
         });
 
         $scope.products = {};
@@ -77,26 +82,14 @@ angular.module('mean.commerce')
       }
     };
 
-    // $scope.upload = function (file) {
 
-    //     file.upload = Upload.upload({
-    //       url: 'commerce/assets/upload',
-    //       data: {file: file},
-    //     });
+    $scope.products.stock = 'In Stock';
+    $scope.setAction = function(action) { 
 
+      $scope.products.stock = action == 'In Stock' ? 'Out of Stock' : 'In Stock';
 
-    //     file.upload.then(function (response) {
-    //       $timeout(function () {
-    //         file.result = response.data;
-    //       });
-    //     }, function (response) {
-    //       if (response.status > 0)
-    //         $scope.errorMsg = response.status + ': ' + response.data;
-    //     }, function (evt) {
-    //       // Math.min is to fix IE which reports 200% sometimes
-    //       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-    //     });
-    // }
+    };
+
 
   }
 ])

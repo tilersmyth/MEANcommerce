@@ -1,11 +1,23 @@
 <ng-form name="general">
     <div class="form-group" ng-class="{ 'has-error' : submitted && productForm.title.$invalid }">
-      <div class="col-md-12">
+      <div class="col-md-8">
         <input name="title" type="text" class="form-control input-lg" data-ng-model="products.product_title" id="title" placeholder="Product Title" required>
         <div ng-show="submitted && productForm.title.$invalid" class="help-block">
           <p ng-show="productForm.title.$error.required">Title is required</p>
         </div>
-       </div> 
+       </div>
+       <div class="col-md-4">
+       <div class="btn-group btn-stock" uib-dropdown is-open="status.isopen">
+          <button id="stock-button" type="button" class="btn btn-lg btn-stock" ng-class="products.stock=='In Stock' ? 'btn-success' : 'btn-danger'" uib-dropdown-toggle>
+            {{products.stock}}
+          </button>
+          <ul class="uib-dropdown-menu" role="menu" aria-labelledby="stock-button">
+            <li>
+              <a ng-click="setAction(products.stock)">{{products.stock=='In Stock' ? 'Out of Stock' : 'In Stock';}}</a>
+            </li>
+          </ul>
+        </div>
+       </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error' : submitted && productForm.content.$invalid }">
       <div class="col-md-12">

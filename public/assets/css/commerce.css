@@ -40,3 +40,19 @@ ul.nav-tabs{
 .product_row:hover .quick_edit_controls{
 	display: block;
 }
+
+.btn-stock{
+	width: 100% !important;
+}
+
+.label-stock{
+	text-shadow: none !important;
+}
+
+.product_list_menu ul{
+	padding: 0 !important;
+}
+
+.product_list_menu ul li{
+	display: inline;
+}
