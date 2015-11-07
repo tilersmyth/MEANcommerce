@@ -5,13 +5,15 @@
  */
 var Module = require('meanio').Module;
 
-var Commerce = new Module('commerce');
+var Commerce = new Module('commerce'),
+    config = require('meanio').loadConfig(),
+    express = require('express');
 
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Commerce.register(function(app, auth, database) {
+Commerce.register(function(app, auth, circles, database) {
 
   //We enable routing. By default the Package Object is passed to the routes
   Commerce.routes(app, auth, database);
@@ -42,6 +44,10 @@ Commerce.register(function(app, auth, database) {
   Commerce.aggregateAsset('js', '../lib/checklist-model/checklist-model.js');
 
   Commerce.angularDependencies(['ngFileUpload', 'angularMoment', 'checklist-model']);
+
+
+
+  app.use('/files/public', express.static(config.root + '/files/public'));
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

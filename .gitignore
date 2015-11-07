@@ -9,3 +9,8 @@ public/assets/lib/
 .bower-cache/
 .bower-registry/
 .bower-tmp/
+
+#-------------
+# Node Files
+# --------------------
+node_modules/

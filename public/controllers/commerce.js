@@ -31,7 +31,7 @@ angular.module('mean.commerce')
             }
           });
         } else {
-          $scope.product.$remove(function(response) {
+        $scope.product.$remove(function(response) {
         });
         }
     };
@@ -65,14 +65,30 @@ angular.module('mean.commerce')
     $scope.go = function(route){
         $state.go('newProduct.'+route);
     };
- 
+
+    $scope.uploadFiles = function(file, errFiles){ 
+        $scope.f = file;
+        $scope.errFile = errFiles && errFiles[0];
+        if (file){
+          Upload.upload({
+          url: '/api/productImg', 
+          method: 'POST', 
+          headers: {'Content-Type': 'multipart/form-data'},
+          data: {file: file}              
+          }).success(function (response, status) {
+            $scope.products.mainPic = response.file.src;
+          }).error(function (err) {
+                  
+          });
+        }
+    }
+
+  
     $scope.create = function(isValid) {
       if (isValid) {  
-
         var products = new Product($scope.products); 
-
         products.$save(function(response) {
-          
+            console.log(response);
         });
 
         $scope.products = {};
@@ -80,6 +96,7 @@ angular.module('mean.commerce')
       } else {
         $scope.submitted = true;
       }
+
     };
 
 
@@ -102,7 +119,7 @@ angular.module('mean.commerce')
       Product.get({
         productId: $stateParams.productId
       }, function(product) {
-          console.log(product);
+          
       });
     };
   }

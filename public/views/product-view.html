@@ -22,7 +22,7 @@
       <tbody>
         <tr class="product_row" ng-repeat="product in products" ng-click="getProduct()">
           <td><input type="checkbox" checklist-model="select.products" checklist-value="product._id" ng-click="$event.stopPropagation()"></td>	
-          <td><img width="80px" ng-src="{{product.product_image ? product.product_image : 'commerce/assets/img/placeholder-thumbnail.gif'}}"/></td>
+          <td><div class="img_wrapper"><img ng-src="{{product.mainPic ? product.mainPic : 'commerce/assets/img/placeholder-thumbnail.gif'}}"/></div></td>
           <td>{{product.product_title}}</td>
           <td>{{product.product_sku}}</td>
           <td><span class="label label-stock" ng-class="product.stock=='In Stock' ? 'label-success' : 'label-danger'">{{product.stock}}</span></td>

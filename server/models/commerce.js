@@ -38,9 +38,9 @@ var ProductSchema = new Schema({
     type: String,
     trim: true
   },  
-  picFile: {
-    type: String
-    //array
+  mainPic: {
+    type: String,
+    default: ''
   },
   user: {
     type: Schema.ObjectId,

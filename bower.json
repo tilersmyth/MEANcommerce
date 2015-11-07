@@ -2,8 +2,9 @@
   "name": "commerce",
   "version": "0.0.1",
   "dependencies": {
-  	"ng-file-upload": "latest",
-  	"angular-moment": "latest",
-  	"checklist-model": "latest"
+    "ng-file-upload": "latest",
+    "angular-moment": "latest",
+    "checklist-model": "latest",
+    "ng-file-upload-shim": "latest"
   }
 }

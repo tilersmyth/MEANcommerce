@@ -56,3 +56,13 @@ ul.nav-tabs{
 .product_list_menu ul li{
 	display: inline;
 }
+
+.img_wrapper{
+	width: 100px;
+	overflow: hidden;
+}
+
+.img_wrapper img{
+	max-height: 80px;
+	width: auto;
+}

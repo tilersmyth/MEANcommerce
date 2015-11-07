@@ -13,9 +13,9 @@ var hasPermissions = function(req, res, next) {
 
     for (var i = 0; i < req.body.permissions.length; i++) {
       var permission = req.body.permissions[i];
-      // if (req.acl.user.allowed.indexOf(permission) === -1) {
-      //       return res.status(401).send('User not allowed to assign ' + permission + ' permission.');
-      //   };
+      if (req.acl.user.allowed.indexOf(permission) === -1) {
+            return res.status(401).send('User not allowed to assign ' + permission + ' permission.');
+        };
     };
 
     next();
@@ -23,11 +23,9 @@ var hasPermissions = function(req, res, next) {
 
 module.exports = function(Products, app, auth) {
   
-  var products = require('../controllers/commerce')(Products);
-
-  app.route('/auth/products')
-  .get(products.all);
-
+  var multipart = require('connect-multiparty'), 
+  multipartMiddleware = multipart(),
+  products = require('../controllers/commerce')(Products);
 
   app.route('/api/product')
     .get(products.all)
@@ -36,6 +34,9 @@ module.exports = function(Products, app, auth) {
   app.route('/api/product/:productId')
     .get(auth.isMongoId, products.show)
     .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, products.destroy);
+
+  app.route('/api/productImg')
+    .post(auth.requiresLogin, multipartMiddleware, products.imgUpload);
 
   app.param('productId', products.single);
 };
