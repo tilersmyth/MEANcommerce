@@ -49,8 +49,8 @@ angular.module('mean.commerce')
 
   }
 ])
-.controller('ProductNewController', ['$scope', 'Global', 'Product','$state', 'Upload',
-  function($scope, Global, Product, $state, Upload) {
+.controller('ProductNewController', ['$scope', 'Global', 'Product','$state', 'Upload', 'Category',
+  function($scope, Global, Product, $state, Upload, Category) {
     $scope.global = Global;
 
     $scope.tabs = [
@@ -96,7 +96,6 @@ angular.module('mean.commerce')
       } else {
         $scope.submitted = true;
       }
-
     };
 
 
@@ -105,6 +104,12 @@ angular.module('mean.commerce')
 
       $scope.products.stock = action == 'In Stock' ? 'Out of Stock' : 'In Stock';
 
+    };
+
+    $scope.pull_cats = function() {
+      Category.query(function(categories) {
+        $scope.cats = categories; 
+      });
     };
 
 
@@ -122,5 +127,45 @@ angular.module('mean.commerce')
           
       });
     };
+  }
+])
+.controller('catController', ['$scope', 'Global', 'Category',
+  function($scope, Global, Category) {
+    $scope.global = Global;
+
+    $scope.findCats = function() {
+      Category.query(function(categories) {
+        $scope.cats = categories; 
+      });
+    };
+
+    $scope.categories = {};
+    $scope.create = function(isValid) {
+      if (isValid) {  
+        var cat = new Category($scope.categories); 
+        cat.$save(function(response) {
+         $scope.findCats();   
+        });
+      } else {
+        $scope.submitted = true;
+      }
+    };
+
+    $scope.remove_cat = function(cat) {
+      if (cat) {
+      cat.$remove(function(response) {
+          for (var i in $scope.cats) {
+            if ($scope.cats[i] === cat) {
+              $scope.cats.splice(i, 1);
+            }
+          }
+        });
+      } else {
+      $scope.cat.$remove(function(response) {
+      });
+      }
+    };
+
+  
   }
 ]);

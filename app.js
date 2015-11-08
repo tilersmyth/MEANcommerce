@@ -32,6 +32,13 @@ Commerce.register(function(app, auth, circles, database) {
     roles: ['authenticated'],
     menu: 'main'  
   });
+
+  Commerce.menus.add({
+    title: 'Categories',
+    link: 'categories',
+    roles: ['authenticated'],
+    menu: 'main'  
+  });
   
   Commerce.aggregateAsset('css', 'commerce.css');
 

@@ -66,3 +66,16 @@ ul.nav-tabs{
 	max-height: 80px;
 	width: auto;
 }
+
+.cat_list{
+	margin-top: 20px;
+	padding: 0;
+}
+
+.cat_list li{
+	list-style: none;
+	margin-bottom: 3px;
+}
+
+
+

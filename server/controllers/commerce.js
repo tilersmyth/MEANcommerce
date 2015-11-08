@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Product = mongoose.model('Product'),
+    Category = mongoose.model('Category'),
     config = require('meanio').loadConfig(),
     _ = require('lodash'),
     fs = require('fs'),
@@ -168,6 +169,69 @@ module.exports = function(Products) {
                 res.json(products)
             });
 
+        },
+        /**
+         * List all cats
+         */
+        allCats: function(req, res) { 
+
+            var query = req.acl.query('Category');
+
+           query.find({}).sort('-created').populate('user', 'name username').exec(function(err, category) {
+                if (err) {
+                    return res.status(500).json({
+                        error: 'Cannot list the category'
+                    });
+                }
+   
+                res.json(category)
+            });
+
+        },
+         /**
+         * Create a Category
+         */
+        createCat: function(req, res) { 
+            var category = new Category(req.body);
+            category.user = req.user;
+           
+            category.save(function(err) {
+                if (err) {
+                    return res.status(500).json({
+                        error: 'Cannot save the category'
+                    });
+                }
+
+                res.json(category);
+            });
+
+        },
+         /**
+         * Find cat by id
+         */
+        single_cat: function(req, res, next, id) {
+            Category.load(id, function(err, categories) {
+                if (err) return next(err);
+                if (!categories) return next(new Error('Failed to load product ' + id));
+                req.categories = categories;
+                next();
+            });
+        },
+        /**
+         * Delete category
+         */
+        destroy_cat: function(req, res) {
+            var cat = req.categories;
+
+            cat.remove(function(err) {
+                if (err) {
+                    return res.status(500).json({
+                        error: 'Cannot delete the Category'
+                    });
+                }
+
+                res.json(cat);
+            });
         }
     };
 }

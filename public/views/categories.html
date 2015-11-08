@@ -1,0 +1,49 @@
+<div data-ng-controller="catController" data-ng-init="findCats()">
+ <div class="row">
+  <div class="col-md-4">
+  <h2 style="margin-bottom: 40px">Product Categories</h2>
+    <form name="catForm" class="form-horizontal" role="form" data-ng-submit="create(catForm.$valid)" novalidate>
+      <div class="form-group" ng-class="{ 'has-error' : submitted && catForm.cat_name.$invalid }">
+        <label for="cat_name">Category Name</label>
+        <input type="text" class="form-control input-lg" data-ng-model="categories.cat_name" id="cat_name" name="cat_name" placeholder="Category Name" required>
+        <div ng-show="submitted && catForm.cat_name.$invalid" class="help-block">
+          <p ng-show="catForm.cat_name.$error.required">Category name is required</p>
+        </div>
+      </div>
+      <div class="form-group"  ng-class="{ 'has-error' : submitted && catForm.cat_slug.$invalid }">
+        <label for="cat_slug">Category Slug</label>
+        <input type="text" class="form-control input-lg" data-ng-model="categories.cat_slug" id="cat_slug" name="cat_slug" placeholder="Category Slug" required>
+        <div ng-show="submitted && catForm.cat_slug.$invalid" class="help-block">
+          <p ng-show="catForm.cat_slug.$error.required">Category slug is required</p>
+        </div>
+      </div>
+      <button mean-token="'create-submit'" type="submit" class="btn btn-default">Add Category</button>
+    </form>
+  </div>  
+  <div class="col-sm-offset-1 col-md-7">
+  <table style="margin-top: 30px" class="table table-striped" data-ng-show="cats.length">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Slug</th>
+          <th>Count</th>
+          <th>Updated</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="category in cats">
+          <td>{{category.cat_name}}</td>
+          <td>{{category.cat_slug}}</td>
+          <td>0</td>
+          <td am-time-ago="category.updated[0] ? category.updated[0] : category.created"></td>
+          <td><a href="#" ng-click="remove_cat(category)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h1 data-ng-hide="!cats || cats.length">No categories yet.</h1>
+  
+  </div>
+ </div>
+</div>

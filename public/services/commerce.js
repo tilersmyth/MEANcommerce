@@ -10,4 +10,15 @@ function($resource) {
       }
     });
   }
+])
+.factory('Category', ['$resource',
+function($resource) {
+    return $resource('api/category/:categoryId', {
+      categoryId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
 ]);

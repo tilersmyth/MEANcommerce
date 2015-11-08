@@ -1,4 +1,4 @@
-<div class="" data-ng-controller="ProductNewController">
+<div class="" data-ng-controller="ProductNewController" data-ng-init="pull_cats()">
   <h2>Add New Product</h2>
 <form name="productForm" class="form-horizontal" role="form" data-ng-submit="create(productForm.$valid)" novalidate>
   <div class="row">
@@ -11,6 +11,11 @@
       </div>
       <div class="col-md-3 col-md-offset-1 well well-sm">
         <button mean-token="'create-submit'" type="submit" class="btn btn-primary">Save Product</button>
+
+        <ul class="cat_list" ng-show="cats.length">
+          <li><b>Product Categories</b></li>
+          <li ng-repeat="cat in cats"><input type="checkbox" ng-model="products.category[$index]" ng-true-value="'{{cat.cat_slug}}'"> {{cat.cat_name}}</li>
+        </ul>
       </div>
   </div> <!-- .row -->
 </form>

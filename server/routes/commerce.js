@@ -38,5 +38,13 @@ module.exports = function(Products, app, auth) {
   app.route('/api/productImg')
     .post(auth.requiresLogin, multipartMiddleware, products.imgUpload);
 
+  app.route('/api/category')
+    .get(products.allCats)
+    .post(auth.requiresLogin, hasPermissions, products.createCat);
+
+  app.route('/api/category/:categoryId') 
+    .delete(auth.isMongoId, auth.requiresLogin, hasAuthorization, products.destroy_cat);
+
+  app.param('categoryId', products.single_cat);
   app.param('productId', products.single);
 };

@@ -37,6 +37,9 @@ var ProductSchema = new Schema({
   stock: {
     type: String,
     trim: true
+  }, 
+  category: {
+    type: Array
   },  
   mainPic: {
     type: String,
